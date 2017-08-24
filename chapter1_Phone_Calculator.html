@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Phone Calculator</title>
+  </head>
+  <body>
+    <h1>Can I buy this phone?</h1>
+
+    <script type="text/javascript">
+    const TAXRATE = 0.08;
+    const SPENDING_THRESHOLD = 200;
+    const PHONE_PRICE = 99.99;
+    const ACCESSORY_PRICE = 9.99;
+
+    var bank_balance = prompt("What is your bank balance?");// How much money does user have
+    var amount = 0;
+
+    function calculateTax(amount) {
+      return amount * TAXRATE;
+    }
+
+    function formatAmount(amount) {
+      return "$" + amount.toFixed(2);
+    }
+
+    // Will let you keep buying phones as long as there is money available
+
+    while (amount < SPENDING_THRESHOLD) {
+      //buy the new phone
+      amount = amount + PHONE_PRICE;
+
+      // buy accessory if we can afford it
+      if (amount < SPENDING_THRESHOLD) {
+        amount = amount + ACCESSORY_PRICE;
+      }
+
+    }
+
+    //Paying Sales tax
+    amount = amount + calculateTax(amount);
+    alert( "Your Purchase: " + formatAmount(amount)); //Gives total amount of purchase
+
+
+    //Can we afford this purchase?
+    if (amount > bank_balance) {
+      alert("You can't afford this purchase."); //You can't afford purchase
+    }
+
+    </script>
+
+  </body>
+</html>
